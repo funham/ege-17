@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <inttypes.h>
 using namespace std;
 
 /*
@@ -11,6 +13,22 @@ using namespace std;
 
 void count_of_prod()
 {
+    int N = 0;
+    cin >> N;
+
+    vector<int> numbers(N, 0);
+    
+
+    for (int i = 0; i < N; i++)
+    {
+        cin >> numbers[i];
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        cout << numbers[i];
+    }
+    
 
 }
 int main()
