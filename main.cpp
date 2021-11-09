@@ -13,23 +13,24 @@ using namespace std;
 
 void count_of_prod()
 {
-    int N = 0;
-    cin >> N;
+    int n = 0;
+    cin >> n;
 
-    vector<int> numbers(N, 0);
+    vector<int> nums(n, 0);
     
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> numbers[i];
+        cin >> nums[i];
     }
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n - 1; i++)
     {
-        cout << numbers[i];
+        for (int j = i + 1; j < n; j++)
+        {
+            cout << nums[i] << " " << nums[j] << endl;
+        }
     }
-    
-
 }
 int main()
 {
