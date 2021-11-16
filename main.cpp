@@ -9,7 +9,7 @@ using namespace std;
 2. + вывести все пары
 3. + вместо вывода пары посчитать ее сумму
 4. + вывести только нечетные суммы
-5. вывести только максималную сумму
+5. + вывести только максималную сумму
 
 */
 
@@ -26,6 +26,8 @@ void max_sum()
         cin >> nums[i];
     }
 
+    int max = -99999; // less than -1000
+
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = i; j < n; j++)
@@ -34,14 +36,15 @@ void max_sum()
             
             if (sum % 2)
             {
-                cout << sum << endl;
+                max = std::max(sum, max);
             }
         }
     }
+
+    cout << max << endl;
 }
 
 int main()
 {
     max_sum();
-    cout << "Hello, world!" << endl;
 }
