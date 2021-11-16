@@ -45,7 +45,7 @@ void max_sum()
         }
     }
 
-    cout << max << endl;
+    cout << (max == -99999? -1 : max) << endl;
 }
 
 int main()
