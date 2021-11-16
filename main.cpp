@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -15,15 +16,18 @@ using namespace std;
 
 void max_sum()
 {
+    ifstream ifs("data.txt");
+
+
     int n = 0;
-    cin >> n;
+    ifs >> n;
 
     vector<int> nums(n, 0);
     
 
     for (int i = 0; i < n; i++)
     {
-        cin >> nums[i];
+        ifs >> nums[i];
     }
 
     int max = -99999; // less than -1000
