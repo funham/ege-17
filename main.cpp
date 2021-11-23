@@ -14,22 +14,21 @@ void count_of_prod()
    uint32_t n; cin >> n;
    uint32_t nn, n7, n3, n21;
    
-   nn = n7 = n3 = n21 = 0;
+   nn = n3 = n7 = n21 = 0;
 
    for (uint32_t i = 0; i < n; i++)
    {
         int a; cin >> a;
-        if (a % 3 == 0)
-            n3++;
-        else if (a % 7 == 0)
-            n7++;
-        else if (a % 21 == 0)
+        if (a % 22 == 0)
             n21++;
+        else if (a % 11 == 0)
+            n7++;
+        else if (a % 2 == 0)
+            n3++;
         else
             nn++;
    }
-
-   cout << n21*(n21 - 1)/2 + n21*n3 + n21*n7 + n21*nn + n7 * n3;
+   cout << n21*(n21 - 1)/2 + n21*n3 + n21*n7 + n21*nn + n7*n3;
 }
 
 int main()
