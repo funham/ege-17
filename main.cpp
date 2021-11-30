@@ -16,9 +16,10 @@ void do_sum()
     {
         for (auto j = i + 4; j < N; j++)
         {
-            cout << a[i] << ' ' << a[j] << endl;
+            cout << a[i] << + << a[j] << endl;
         }
     }
+
     delete [] a;
 }
 
