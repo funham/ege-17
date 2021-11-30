@@ -12,13 +12,17 @@ void do_sum()
         cin >> a[i];
     }
 
+    int min_sum = INT16_MAX;
+
     for (auto i = 0; i < N - 1; i++)
     {
         for (auto j = i + 4; j < N; j++)
         {
-            cout << a[i] + a[j] << endl;
+            min_sum = std::min(min_sum, a[i] + a[j]);  
         }
     }
+
+    cout << min_sum;
 
     delete [] a;
 }
