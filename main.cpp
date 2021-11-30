@@ -5,17 +5,26 @@ void do_sum()
 {
     int N; cin >> N;
     int min_sum = INT16_MAX;
-    int min1, min2;
-    min1 = min2 = INT16_MAX;
-
-    for (int i = 0; i < N; i++)
+    int min_v = INT16_MAX;
+    int buff[4] = {};
+    
+    for (int i = 0; i < 4; i++)
     {
-        int a; cin >> a;
-        min2 = std::min(min2, a);
-        min1 = std::min(min1, min2);
+        cin >> buff[i];
     }
 
-    min_sum = min1 + min2;
+    for (int i = 4; i < N; i++)
+    {
+        int a; cin >> a;
+        int min_cand = buff[0];
+        for (int i = 0; i < 3; i++)
+        {
+            buff[i] = buff[i+1];
+        }
+        buff[3] = a;
+        min_v = std::min(min_cand, min_v);
+        min_sum = std::min(min_sum, min_v + buff[3]);
+    }
 
     cout << min_sum;
 }
