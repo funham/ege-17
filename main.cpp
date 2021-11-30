@@ -14,7 +14,7 @@ void do_sum()
 
     for (auto i = 0; i < N - 1; i++)
     {
-        for (auto j = i; j < N; j++)
+        for (auto j = i + 4; j < N; j++)
         {
             cout << a[i] << ' ' << a[j] << endl;
         }
