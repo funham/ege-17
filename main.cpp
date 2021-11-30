@@ -12,14 +12,17 @@ void do_sum()
         cin >> a[i];
     }
 
-    for (auto i = 0; i < N; i++)
+    for (auto i = 0; i < N - 1; i++)
     {
-        cout << a[i] << endl;
+        for (auto j = i; j < N; j++)
+        {
+            cout << a[i] << ' ' << a[j] << endl;
+        }
     }
     delete [] a;
 }
 
 int main()
 {
-    cout << "Hello, world!" << endl;
+    do_sum();
 }
