@@ -1,7 +1,12 @@
 #include <iostream>
-using namespace std;
+#include <inttypes.h>
+
+void func()
+{
+}
 
 int main()
 {
-    cout << "Hello, world!" << endl;
+    func();
+    return 0;
 }
