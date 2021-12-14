@@ -8,18 +8,20 @@ void number_sums_div_eff_2()
     int cntrs[2][40];
     memset(cntrs, 0, sizeof(int) * 2 * 40);
 
+    std::cin >> a;
+
     while (a != -9999)
     {
+        cntrs[a > 40][a % 40] += 1;
         std::cin >> a;
-        cntrs[a >= 40][a % 40] += 1;
     }
 
     int c_sum = 0;
-    int d0 = cntrs[1][0], d0_;
-    // d0_ = cntrs[0][0];
+    int d0 = cntrs[1][0],
+        d0_ = cntrs[0][0];
 
     c_sum += d0 * (d0 - 1) / 2;
-    // c_sum += d0 * d0_;
+    c_sum += d0 * d0_;
 
     d0 = cntrs[1][20];
     d0_ = cntrs[0][20];
