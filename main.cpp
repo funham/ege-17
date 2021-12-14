@@ -1,6 +1,7 @@
 #include <iostream>
 #include <inttypes.h>
 #include <stddef.h>
+#include <array>
 
 void func()
 {
@@ -28,12 +29,15 @@ void func()
         }
     }
 
+    int max_sum = 0;
     for (int i = 0; i < 6; i++)
     {
-        std::cout << i << ": ";
         auto &m = maximums[i];
-        std::cout << m[0] << ' ' << m[1] << std::endl;
+        auto sum = m[0] + m[1];
+        max_sum = std::max(sum, max_sum);
     }
+
+    std::cout << max_sum;
 }
 
 int main()
