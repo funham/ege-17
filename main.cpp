@@ -9,11 +9,11 @@ void func()
     int N;
     std::cin >> N;
 
-    int a;
-    std::cin >> a;
-
-    for (int i = 1; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
+        int a;
+        std::cin >> a;
+
         auto &minmax = maximums[i % 6][0];
         auto &maxmax = *(&minmax + 1); // just next element
 
@@ -26,6 +26,13 @@ void func()
         {
             std::swap(minmax, maxmax);
         }
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        std::cout << i << ": ";
+        auto &m = maximums[i];
+        std::cout << m[0] << ' ' << m[1] << std::endl;
     }
 }
 
