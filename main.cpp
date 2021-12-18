@@ -1,36 +1,43 @@
 #include <iostream>
+#include <inttypes.h>
+#include <memory.h>
 
-void do_sum()
+constexpr int MULT_OF = 34;
+
+void number_sums_div_eff_2()
 {
+    int a = 0;
+    int cntrs[MULT_OF];
+    memset(cntrs, 0, sizeof(int) * MULT_OF);
+
     int N;
     std::cin >> N;
-    int min_sum = INT16_MAX;
-    int min_v = INT16_MAX;
-    int buff[4] = {};
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < N; i++)
     {
-        std::cin >> buff[i];
-    }
-
-    for (int i = 4; i < N; i++)
-    {
-        int a;
         std::cin >> a;
-        int min_cand = buff[0];
-        for (int i = 0; i < 3; i++)
-        {
-            buff[i] = buff[i + 1];
-        }
-        buff[3] = a;
-        min_v = std::min(min_cand, min_v);
-        min_sum = std::min(min_sum, min_v + buff[3]);
+        cntrs[a % MULT_OF] += 1;
     }
 
-    std::cout << min_sum;
+    int c_sum = 0;
+    int n = cntrs[0], nc;
+    c_sum += n * (n - 1) / 2;
+
+    n = cntrs[MULT_OF / 2];
+
+    c_sum += n * (n - 1) / 2;
+
+    for (int i = 1; i < MULT_OF / 2; i++)
+    {
+        n = cntrs[i], nc = cntrs[MULT_OF - i];
+        c_sum += n * nc;
+    }
+
+    std::cout << c_sum;
 }
 
 int main()
 {
-    do_sum();
+    number_sums_div_eff_2();
+    return 0;
 }
