@@ -1,33 +1,48 @@
 #include <iostream>
 
+constexpr int MAX_DIST = 6;
+constexpr int MULT_OF = 24;
+
+bool is_sum_mult(int a, int b)
+{
+    return !((a + b) % MULT_OF);
+}
+
 void do_sum()
 {
     int N;
     std::cin >> N;
-    int min_sum = INT16_MAX;
-    int min_v = INT16_MAX;
-    int buff[4] = {};
+    int count = 0;
+    int buff[MAX_DIST] = {};
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < MAX_DIST; i++)
     {
         std::cin >> buff[i];
     }
 
-    for (int i = 4; i < N; i++)
+    for (int i = 0; i < MAX_DIST - 1; i++)
+    {
+        for (int j = i + 1; j < MAX_DIST; j++)
+        {
+            count += is_sum_mult(buff[i], buff[j]);
+        }
+    }
+
+    for (int i = MAX_DIST; i < N; i++)
     {
         int a;
         std::cin >> a;
-        int min_cand = buff[0];
-        for (int i = 0; i < 3; i++)
+
+        for (int i = 0; i < MAX_DIST - 1; i++)
         {
             buff[i] = buff[i + 1];
+            count += is_sum_mult(buff[i], a);
         }
-        buff[3] = a;
-        min_v = std::min(min_cand, min_v);
-        min_sum = std::min(min_sum, min_v + buff[3]);
+        buff[MAX_DIST - 1] = a;
+        std::cout << a << std::endl;
     }
 
-    std::cout << min_sum;
+    std::cout << count;
 }
 
 int main()
