@@ -1,11 +1,19 @@
 #include <iostream>
 
-constexpr int MAX_DIST = 6;
+// #define DEBUG
+
+constexpr int MAX_DIST = 7;
 constexpr int MULT_OF = 24;
 
 bool is_sum_mult(int a, int b)
 {
+#ifdef DEBUG
+    bool res = !((a + b) % MULT_OF);
+    std::cout << a << " + " << b << " is " << (res ? "OK" : "BAD") << "\n";
+    return res;
+#else
     return !((a + b) % MULT_OF);
+#endif
 }
 
 void do_sum()
@@ -39,7 +47,6 @@ void do_sum()
             count += is_sum_mult(buff[i], a);
         }
         buff[MAX_DIST - 1] = a;
-        std::cout << a << std::endl;
     }
 
     std::cout << count;
