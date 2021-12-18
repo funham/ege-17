@@ -3,34 +3,39 @@
 #include <memory.h>
 
 constexpr int MULT_OF = 34;
+constexpr int MAX_DIST = 7;
 
-void number_sums_div_eff_2()
+void ctrl_sum()
 {
     int a = 0;
+    int c_sum = 0;
+
+    int buff[MAX_DIST] = {};
     int cntrs[MULT_OF];
+
     memset(cntrs, 0, sizeof(int) * MULT_OF);
 
     int N;
     std::cin >> N;
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < MAX_DIST; i++)
     {
-        std::cin >> a;
-        cntrs[a % MULT_OF] += 1;
+        std::cin >> buff[i];
     }
 
-    int c_sum = 0;
-    int n = cntrs[0], nc;
-    c_sum += n * (n - 1) / 2;
-
-    n = cntrs[MULT_OF / 2];
-
-    c_sum += n * (n - 1) / 2;
-
-    for (int i = 1; i < MULT_OF / 2; i++)
+    for (int i = MAX_DIST; i < N; i++)
     {
-        n = cntrs[i], nc = cntrs[MULT_OF - i];
-        c_sum += n * nc;
+        cntrs[buff[0] % MULT_OF] += 1;
+
+        for (int j = 0; j < MAX_DIST - 1; j++)
+        {
+            buff[j] = buff[j + 1];
+        }
+
+        std::cin >> a;
+        buff[MAX_DIST - 1] = a;
+        // a % 34 = 3: => (34 - (a % 34) - 1) = (34 - 3 - 1)
+        c_sum += cntrs[(MULT_OF - (a % MULT_OF)) % MULT_OF];
     }
 
     std::cout << c_sum;
@@ -38,6 +43,6 @@ void number_sums_div_eff_2()
 
 int main()
 {
-    number_sums_div_eff_2();
+    ctrl_sum();
     return 0;
 }
