@@ -6,14 +6,22 @@
 
 const int MULT = 4;
 
-int min_sum = 4000;
 
+std::array<int, 3> min_trio = {1002, 1002, 1002};
 
-void refresh_min(int b)
+void refresh_min(std::array<int, 3> new_trio)
 {
-    if (b < min_sum)
+    int min_sum = 0;
+    int new_sum = 0;
+
+    for (int i = 0; i < 3; i++)
     {
-        min_sum = b;
+        min_sum += min_trio[i];
+        new_sum += new_trio[i];
+    }
+    if (new_sum < min_sum)
+    {
+        min_trio = new_trio;
     }
 }
 
@@ -21,9 +29,8 @@ void numbers_min_sum3()
 {
     int n; std::cin >> n;
 
-
     // 3 - count of minimums
-    std::array<std::array<int, MULT>, 3> mins;
+    std::array<std::array<int, 3>, MULT> mins;
     
     for (int i = 0; i < MULT; i++)
     {
@@ -36,25 +43,25 @@ void numbers_min_sum3()
 
     for (int i = 0; i < n; i++)
     {
-        // std::cout << i << ": ";
+        // std::cout << "i: " << i << ", n: " << n;
         int a; std::cin >> a;
 
-        // std::cout << "mod = " << a % MULT << "\n";
+        //std::cout << "a % 4 = " << a % 4 << '\n';
+
         std::array<int, 4> mins_by_res;
     
-        for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
         {
-            mins_by_res[i] = mins[a % MULT][i];
+            mins_by_res[j] = mins[a % MULT][j];
         }
+
         mins_by_res[3] = a;
         std::sort(mins_by_res.begin(), mins_by_res.end());
         
-        for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
         {
-            mins[a % MULT][i] = mins_by_res[i];
-            // std::cout << mins[a % MULT][i] << ' ';
+            mins[a % MULT][j] = mins_by_res[j];
         }
-        std::cout << '\n';
     }
 
     /* 0 = [...] % 4
@@ -62,7 +69,7 @@ void numbers_min_sum3()
     0 + 1 + 3 done
     0 + 2 + 2 done
     1 + 1 + 2 done
-    3 + 3 + 2
+    3 + 3 + 2 done
     */
 
     int &m0 = mins[0][0];
@@ -77,22 +84,20 @@ void numbers_min_sum3()
 
     int curr_sum = 0;
 
+    refresh_min({mins[0][0], mins[0][1], mins[0][2]});
+
+    refresh_min({m0, m1, m3});
+
+    refresh_min({m0, m2, m2s});
+    
+    refresh_min({m1, m1s, m2});
+
+    refresh_min({m3, m3s, m2});
+
     for (int i = 0; i < 3; i++)
     {
-        curr_sum = mins[0][i];
+        std::cout << min_trio[i] << ' ';
     }
-
-    refresh_min(curr_sum);
-
-    refresh_min(m0 + m1 + m3);
-
-    refresh_min(m0 + m2 + m2s);
-    
-    refresh_min(m1 + m1s + m2);
-
-    refresh_min(m3 + m3s + m2);
-
-    std::cout << min_sum;
 }
 
 int main()
