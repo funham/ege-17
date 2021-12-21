@@ -41,14 +41,23 @@ void numbers_min_sum3()
         for (int i = 0; i < 3; i++)
         {
             mins[a % MULT][i] = mins_by_res[i];
-            std::cout << mins[a % MULT][i] << ' ';
+            // std::cout << mins[a % MULT][i] << ' ';
         }
         std::cout << '\n';
     }
 
+    /* 0 = [...] % 4
+    0 + 0 + 0
+    0 + 1 + 3
+    0 + 2 + 2
+    1 + 1 + 2
+    1 + 3 + 0
+    3 + 3 + 2
+    */
+   
     for (int i = 0; i < MULT; i++)
     {
-        
+        mins[i];
     }
 }
 
