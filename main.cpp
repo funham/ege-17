@@ -1,5 +1,7 @@
 #include <iostream>
 #include <inttypes.h>
+#include <array>
+#include <algorithm>
 #include <memory.h>
 
 const int MULT = 4;
@@ -8,26 +10,45 @@ void numbers_min_sum3()
 {
     int n; std::cin >> n;
 
-    int cntrs[MULT] = {};
 
     // 3 - count of minimums
-    int mins[MULT][3];
-    memset(mins, INT_MAX, sizeof(int) * 3 * 4);
+    std::array<std::array<int, MULT>, 3> mins;
+    
+    for (int i = 0; i < MULT; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            mins[i][j] = 1002;
+        }
+    }
 
 
     for (int i = 0; i < n; i++)
     {
+        // std::cout << i << ": ";
         int a; std::cin >> a;
 
-        cntrs[a % MULT] += 1;
-        
-        for (int &ord_min : mins[a % MULT])
+        // std::cout << "mod = " << a % MULT << "\n";
+        std::array<int, 4> mins_by_res;
+    
+        for (int i = 0; i < 3; i++)
         {
-            if (a < ord_min)
-            {
-                std::swap(a, ord_min);
-            }
+            mins_by_res[i] = mins[a % MULT][i];
         }
+        mins_by_res[3] = a;
+        std::sort(mins_by_res.begin(), mins_by_res.end());
+        
+        for (int i = 0; i < 3; i++)
+        {
+            mins[a % MULT][i] = mins_by_res[i];
+            std::cout << mins[a % MULT][i] << ' ';
+        }
+        std::cout << '\n';
+    }
+
+    for (int i = 0; i < MULT; i++)
+    {
+        
     }
 }
 
